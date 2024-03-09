@@ -1,0 +1,23 @@
+---
+#
+# Ametrine Configuration
+# Main Configuration
+#
+
+# The location of where your themes are
+# stored. Supports use of ~ to act as home.
+themepath: "~/themes"
+
+
+# Commands run before changing the theme, these
+# are the default. Themes can choose to define
+# their own.
+precmds: 
+#    - killall waybar # Restart waybar with new theme
+
+
+# Commands run before changing the theme, these
+# are the default. Themes can choose to define
+# their own.
+aftercmds: 
+#    - waybar & # Start up waybar with new theme

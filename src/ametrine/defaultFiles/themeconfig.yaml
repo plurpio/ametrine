@@ -1,0 +1,23 @@
+---
+#
+# Ametrine Configuration
+# Theme Configuration
+#
+
+# Define if you want to also run the pre 
+# commands present in the main configuration.
+usemainprecmds: True
+
+# Define if you want to also run the after
+# commands present in the main configuration.
+usemainaftercmds: True
+
+# Commands run before changing the theme, these
+# are theme specific.
+precmds: 
+#    - killall waybar # Restart waybar with new theme
+
+# Commands run before changing the theme, these
+# are theme specific.
+aftercmds: 
+#    - waybar & # Start up waybar with new theme
