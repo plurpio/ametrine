@@ -2,7 +2,6 @@ import yaml
 import os
 import logging
 import shutil
-from schema import Schema, SchemaError
 
 #
 # Getting config location
