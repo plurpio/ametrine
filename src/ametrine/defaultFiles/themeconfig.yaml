@@ -4,12 +4,12 @@
 # Theme Configuration
 #
 
-# Define if you want to also run the pre 
-# commands present in the main configuration.
+# Choose if you want to run the before
+# commands in the main configuration.
 usemainprecmds: True
 
-# Define if you want to also run the after
-# commands present in the main configuration.
+# Choose if you want to run the after
+# commands in the main configuration.
 usemainaftercmds: True
 
 # Commands run before changing the theme, these
@@ -17,7 +17,7 @@ usemainaftercmds: True
 precmds: 
 #    - killall waybar # Restart waybar with new theme
 
-# Commands run before changing the theme, these
+# Commands run after changing the theme, these
 # are theme specific.
 aftercmds: 
 #    - waybar & # Start up waybar with new theme

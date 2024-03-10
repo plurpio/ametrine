@@ -10,14 +10,14 @@ themepath: "~/themes"
 
 
 # Commands run before changing the theme, these
-# are the default. Themes can choose to define
-# their own.
+# are the default. Themes can also choose to 
+# define their own.
 precmds: 
 #    - killall waybar # Restart waybar with new theme
 
 
-# Commands run before changing the theme, these
-# are the default. Themes can choose to define
-# their own.
+# Commands run after changing the theme, these
+# are the default. Themes can also choose to 
+# define their own.
 aftercmds: 
 #    - waybar & # Start up waybar with new theme
