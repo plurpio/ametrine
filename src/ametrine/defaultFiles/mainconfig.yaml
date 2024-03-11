@@ -8,6 +8,9 @@
 # stored. Supports use of ~ to act as home.
 themepath: "~/themes"
 
+# Dangerous! Enable overwriting of real files
+# with symlinks. (only replaces symlinks if false)
+overwritefiles: False
 
 # Commands run before changing the theme, these
 # are the default. Themes can also choose to 
