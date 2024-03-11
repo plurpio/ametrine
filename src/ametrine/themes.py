@@ -24,3 +24,8 @@ def themeConfig(theme, setting):
     with open(os.path.join(themepath, "config.yaml")) as file:
         f = yaml.safe_load(file)
         return f[setting]
+
+def themePath(theme):
+    if theme not in getThemes():
+        return "invalid theme"
+    return os.path.join(settings.setting("themepath"), theme)
