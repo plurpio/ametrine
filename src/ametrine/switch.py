@@ -4,6 +4,7 @@ import themes
 import settings
 
 def changeTheme(theme):
+    """switch to the theme requested"""
     if theme not in themes.getThemes():
         logging.error("invalid theme: "+theme)
         return "invalid theme"

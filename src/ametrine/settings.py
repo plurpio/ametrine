@@ -43,6 +43,7 @@ with open(os.path.join(settingsPath, "config.yaml")) as file:
     logging.info("Successfully loaded main config.")
 
 def setting(setting):
+    """Fetch a user-set setting"""
     if setting not in f:
         logging.error("invalid setting requested: "+setting)
         return "invalid setting"
