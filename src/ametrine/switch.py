@@ -2,23 +2,45 @@ import os
 import logging
 import themes
 import settings
+import data
+
+def removeTheme(theme):
+    for (root,dirs,files) in os.walk(themes.themePath(data.get("lastTheme")), topdown=True):
+        for i in files:
+            symlinkPath = os.path.join(root.replace(themes.themePath(theme), os.path.expanduser("~"))+"/"+i)
+            if os.path.islink(symlinkPath) == True:
+                os.remove(symlinkPath)
+                logging.info("removing old theme symlink: "+symlinkPath)
+            else:
+                logging.warning("file is at expected symlink location! "+symlinkPath)
+
 
 def changeTheme(theme):
     """switch to the theme requested"""
+    # check if theme valid
     if theme not in themes.getThemes():
         logging.error("invalid theme: "+theme)
         return "invalid theme"
 
+    # run theme-specific precmds
     if themes.themeConfig(theme, "precmds"):
         for i in themes.themeConfig(theme, "precmds"):
             logging.info("Running precmd for theme "+theme+": "+i)
             os.system(i)
 
+    # runs main config precmds
     if settings.setting("precmds") and themes.themeConfig(theme, "usemainprecmds"):
         for i in settings.setting("precmds"):
             logging.info("Running precmd: "+i)
             os.system(i)
 
+    # removes last theme
+    if data.get("lastTheme"):
+        removeTheme(data.get("lastTheme"))
+
+
+
+    # symlinks theme files
     for (root,dirs,files) in os.walk(themes.themePath(theme), topdown=True):
         for i in files:
             symlinkPath = os.path.join(root.replace(themes.themePath(theme), os.path.expanduser("~"))+"/"+i)
@@ -43,12 +65,17 @@ def changeTheme(theme):
                     logging.error("real file at location "+symlinkPath+" enable overwritefiles in config.yaml or delete file in that location.")
 
 
+    # runs theme-specific aftercmds
     if themes.themeConfig(theme, "aftercmds"):
         for i in themes.themeConfig(theme, "aftercmds"):
             logging.info("Running aftercmd for theme "+theme+": "+i)
             os.system(i)
 
+    # runs main config aftercmds
     if settings.setting("aftercmds") and themes.themeConfig(theme, "usemainaftercmds"):
         for i in settings.setting("aftercmds"):
             logging.info("Running aftercmd: "+i)
             os.system(i)
+
+    # sets lastTheme to new theme
+    data.setValue("lastTheme", theme)
