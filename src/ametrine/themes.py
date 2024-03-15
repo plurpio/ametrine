@@ -5,6 +5,7 @@ import yaml
 
 
 def getThemes():
+    """list all themes"""
     themes = []
     for i in os.listdir(settings.setting("themepath")):
         themePath = settings.setting("themepath")+"/"+i
@@ -18,6 +19,7 @@ def getThemes():
 
 
 def themeConfig(theme, setting):
+    """returns a requested setting from a theme"""
     if theme not in getThemes():
         return "invalid theme"
     themepath = settings.setting("themepath")+"/"+theme
@@ -26,6 +28,7 @@ def themeConfig(theme, setting):
         return f[setting]
 
 def themePath(theme):
+    """returns the path of a theme"""
     if theme not in getThemes():
         return "invalid theme"
     return os.path.join(settings.setting("themepath"), theme)
