@@ -36,6 +36,7 @@ else:
             data = json.loads(file)
         except:
             logging.error("invalid data for datafile")
+            logging.debug("data file contains:\n"+file.read())
             os.remove(dataPath)
             with open(dataPath, "w+", encoding='utf-8') as f:
                 data = {}
