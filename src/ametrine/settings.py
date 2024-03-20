@@ -38,8 +38,12 @@ with open(os.path.join(settingsPath, "config.yaml")) as file:
     f = yaml.safe_load(file)
     f["themepath"] = os.path.expanduser(f["themepath"])
     if os.path.isdir(f["themepath"]) == False:
-        logging.critical("Theme path doesn't exist or isn't dir: "+str(f["themepath"]))
-        quit()
+        try:
+            os.makedirs(f["themepath"])
+            logging.info("created theme path")
+        except:
+            logging.critical("theme path doesn't isn't dir: "+str(f["themepath"]))
+            quit()
     logging.info("Successfully loaded main config.")
 
 def setting(setting):
