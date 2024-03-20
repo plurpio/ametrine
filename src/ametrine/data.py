@@ -8,7 +8,6 @@ import logging
 
 if os.getenv("XDG_CONFIG_HOME"):
     dataPath = os.path.join(os.getenv("XDG_CONFIG_HOME"), "ametrine", "data.json")
-    logging.debug(dataPath)
     if os.path.exists(os.path.dirname(dataPath)) == False: os.makedirs(os.path.dirname(dataPath))
     logging.info("using "+dataPath+" as data file")
 elif os.getenv("HOME"):
