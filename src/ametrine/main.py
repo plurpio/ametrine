@@ -5,6 +5,7 @@
 import sys
 import logging
 import os
+import click
 
 #
 # Configure pretty logging
@@ -27,3 +28,10 @@ else:
 # Main App
 #
 
+if __name__ == "__main__":
+    print("bob")
+else:
+    import data
+    import switch
+    import themes
+    import settings
