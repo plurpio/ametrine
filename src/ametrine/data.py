@@ -33,7 +33,7 @@ if not os.path.exists(dataPath):
 else:
     with open(dataPath) as file:
         try:
-            data = json.loads(file)
+            data = json.load(file)
         except:
             logging.error("invalid data for datafile")
             logging.debug("data file contains:\n"+file.read())
