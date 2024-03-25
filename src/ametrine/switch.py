@@ -11,8 +11,8 @@ def removeTheme(theme):
             if os.path.islink(symlinkPath) == True:
                 os.remove(symlinkPath)
                 logging.info("removing old theme symlink: "+symlinkPath)
-            else:
-                logging.warning("file is at expected symlink location! "+symlinkPath)
+            elif os.path.exists(symlinkPath) == False: pass
+            else: logging.warning("file is at expected symlink location! "+symlinkPath)
 
 
 def changeTheme(theme):
