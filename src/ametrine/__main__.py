@@ -2,12 +2,12 @@
 # Imports
 #
 
-import switch
+from . import switch
+from . import themes
+from . import data
 import logging
-import themes
 import click
 import os
-import data
 
 #
 # Configure pretty logging
@@ -65,7 +65,7 @@ def cleanup(theme):
     elif data.get("lastTheme") != "": switch.removeTheme(data.get("lastTheme"))
     elif theme == "all": 
         for i in themes.getThemes(): switch.removeTheme(i)
-    else: click.UsageError
+    else: raise click.UsageError("invalid theme")
 
 
 if __name__ == '__main__':

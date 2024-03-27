@@ -1,8 +1,8 @@
 import os
 import logging
-import themes
-import settings
-import data
+from . import themes
+from . import settings
+from . import data
 
 def removeTheme(theme):
     for (root,dirs,files) in os.walk(themes.themePath(data.get("lastTheme")), topdown=True):

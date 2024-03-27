@@ -1,6 +1,6 @@
 import os
 import logging
-import settings
+from . import settings
 import yaml
 
 
