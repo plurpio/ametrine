@@ -1,21 +1,16 @@
-name: "Build Ametrine"
-on:
-  pull_request:
-  push:
+name: Build Ametrine
+on: [push, pull_request, workflow_dispatch, commit]
 jobs:
   buildametrine:
     runs-on: ubuntu-latest
     steps:
-    - name: Install Nix
+    - name: Build Ametrine
     - uses: actions/checkout@v3
     - uses: cachix/install-nix-action@v22
       with:
         nix_path: nixpkgs=channel:nixos-unstable
-
-    - name: Build Ametrine
-    - run: |
-        cd src
-        nix-build
+    - run: cd src
+    - run: nix-build
 
     - name: Ametrine version
     - run: ./result/bin/ametrine --version
