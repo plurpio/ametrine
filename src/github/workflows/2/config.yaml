@@ -1,0 +1,23 @@
+---
+#
+# Ametrine Configuration
+# Theme Configuration
+#
+
+# Choose if you want to run the before
+# commands in the main configuration.
+usemainprecmds: False
+
+# Choose if you want to run the after
+# commands in the main configuration.
+usemainaftercmds: False
+
+# Commands run before changing the theme, these
+# are theme specific.
+precmds: 
+    - echo "Precommand for theme 2.\nPrecommands from main config disabled"
+
+# Commands run after changing the theme, these
+# are theme specific.
+aftercmds: 
+    - echo "Aftercommands for theme 2\nAftercommands from main config disabled"
