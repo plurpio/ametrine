@@ -1,5 +1,5 @@
 name: Build Ametrine
-on: [push, pull_request, workflow_dispatch, commit]
+on: [push, pull_request, workflow_dispatch]
 jobs:
   buildametrine:
     runs-on: ubuntu-latest
