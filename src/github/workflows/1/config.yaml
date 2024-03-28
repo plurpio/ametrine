@@ -15,9 +15,9 @@ usemainaftercmds: True
 # Commands run before changing the theme, these
 # are theme specific.
 precmds: 
-    - echo "Precommand for theme 1.\nPrecommands from main config enabled"
+    - echo -e "Precommand for theme 1.\nPrecommands from main config enabled"
 
 # Commands run after changing the theme, these
 # are theme specific.
 aftercmds: 
-    - echo "Aftercommands for theme 1\nAftercommands from main config enabled"
+    - echo -e "Aftercommands for theme 1\nAftercommands from main config enabled"
