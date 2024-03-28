@@ -43,11 +43,11 @@ Installation is pretty simple you just have to choose your method.
 
 **The nix way**
 Use this if your on NixOS or have the Nix package manager installed. <br>
-```nix-env -f default.nix -i```
+`nix-env -f default.nix -i`
 
 **The pip way**
-Use this for everything else that isn't NixOS <br>
-```python -m build; pip install dist/*.whl```
+Use this for everything else that isn't NixOS. <br>
+`python -m build; pip install dist/*.whl`
 
 ## development
 To start developing for ametrine follow these steps:
