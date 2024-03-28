@@ -33,6 +33,22 @@ Your theme folder defined in `$HOME/.config/ametrine/config.yaml`, it should con
 You may want to intergrate ametrine into other apps to make changing themes easier. Here is an example with intergration with tofi. This one-liner will make a tofi selection window with all valid themes and lets you choose one to apply. You can modify this to work with other run launchers such as rofi and dmenu. <br>
 `ametrine change $(ametrine theme ls | tofi --prompt "What theme do you want?")`
 
+## installation
+Packages aren't avaliable for now so you have to build Ametrine yourself. <br>
+
+1. clone the repo and cd into src<br>
+```git clone https://github.com/plurpio/ametrine; cd ametrine/src```
+
+Installation is pretty simple you just have to choose your method.
+
+**The nix way**
+Use this if your on NixOS or have the Nix package manager installed.
+```nix-env -f default.nix -i```
+
+**The pip way**
+Use this for everything else that isn't NixOS
+```python -m build; pip install dist/*.whl```
+
 ## development
 To start developing for ametrine follow these steps:
 1. Fork the repo <br>
