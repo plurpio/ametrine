@@ -1,6 +1,6 @@
 <div align = center>
 
-<img src="src/github/banner.png" width="800" height="300" alt="banner">
+<img src="src/github/banner.png" width="960" height="360" alt="banner">
 
 <br>
 
@@ -13,10 +13,10 @@ Ametrine is a CLI application to switch configuration files on the fly!
 </div>
 
 ## configuration
-To run ametrine run the command `ametrine`
-Running that will automatically put configuration files in `$HOME/.config/ametrine/`, main configuration contains documentation to help you.
+To run ametrine use the command `ametrine`
+Running that will automatically put configuration files in `$HOME/.config/ametrine/`, configuration files have documentation embedded into the file. <br><br>
 
-Your theme folder defined in `$HOME/.config/ametrine/config.yaml` should contain themes seperated into folders, go into/create a theme folder and run `ametrine theme config >>> config.yaml` to make a theme-specific configuration file. All other files that are not `config.yaml` will be symlinked from your home directory when running `ametrine change THEME`.
+Your theme folder defined in `$HOME/.config/ametrine/config.yaml`, it should contain themes that are seperated into folders. Create a theme folder and run `ametrine theme config >>> config.yaml` to make a theme-specific configuration file. All other files that are not `config.yaml` will be symlinked from your home directory when running `ametrine change THEME`.
 
 ## cli
 `ametrine` main command <br>
@@ -30,7 +30,7 @@ Your theme folder defined in `$HOME/.config/ametrine/config.yaml` should contain
 `ametrine theme config` prints out default theme config <br>
 
 ## intergration with other apps
-You may want to intergrate ametrine into other apps to make changing themes easier. Here is an example with intergration with tofi. This snippet of bash will make a tofi window popup with all valid themes and let you choose one to apply. You may need to modify this to work with other run launchers such as rofi and dmenu. <br>
+You may want to intergrate ametrine into other apps to make changing themes easier. Here is an example with intergration with tofi. This one-liner will make a tofi selection window with all valid themes and lets you choose one to apply. You can modify this to work with other run launchers such as rofi and dmenu. <br>
 `ametrine change $(ametrine theme ls | tofi --prompt "What theme do you want?")`
 
 ## development
