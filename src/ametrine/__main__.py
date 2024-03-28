@@ -30,7 +30,7 @@ else:
 # Main App
 #
 
-@click.version_option("0a", prog_name="ametrine")
+@click.version_option("1", prog_name="ametrine")
 @click.group()
 def cli():
     pass
