@@ -9,7 +9,7 @@ setup(
     long_description="bob",
     long_description_content_type="text/markdown",
     url="https://github.com/plurpio/ametrine",
-    packages=find_packages(),
+    packages=find_packages() + ['ametrine.defaultFiles'],
     package_data={'ametrine': ['defaultFiles/*']},
     include_package_data=True,
     install_requires=[

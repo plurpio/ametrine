@@ -15,7 +15,7 @@ jobs:
     - name: Build Ametrine
       run: |
         cd src
-        nix-build -o ./result
+        BIN=$(nix-build)/bin/ametrine
 
     - name: Ametrine version
-      run: ./result/bin/ametrine --version
+      run: $BIN --version
