@@ -35,18 +35,21 @@ You may want to intergrate ametrine into other apps to make changing themes easi
 
 ## development
 To start developing for ametrine follow these steps:
-1. Clone the repo <br>
-`git clone https://github.com/plurpio/ametrine`
+1. Fork the repo <br>
 
-2. CD into the src directory <br>
+2. Clone your fork<br>
+`git clone https://github.com/YOURUSERNAME/ametrine`
+
+3. CD into the src directory <br>
 `cd ametrine/src/ametrine`
 
-3. Create a python virtual enviroment and install dependencies <br>
+4. Create a python virtual enviroment and install dependencies <br>
 `python3 -m venv venv; pip install -r requirements.txt`
 
-4. Enable debug logs <br>
+5. Enable debug logs <br>
 `export DEBUG=1`
 
-5. Test compiling with your changes <br>
+6. Test compiling with your changes <br>
 `cd ..; nix-build # Testing with nix build`
-<br>
+
+7. Create a pull request<br>
