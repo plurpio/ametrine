@@ -2,9 +2,12 @@
 # Imports
 #
 
-from . import switch
-from . import themes
-from . import data
+#from . import switch
+#from . import themes
+#from . import data
+from ametrine import switch
+from ametrine import themes
+from ametrine import data
 import logging
 import click
 import os
@@ -30,7 +33,7 @@ else:
 # Main App
 #
 
-@click.version_option("1", prog_name="ametrine")
+@click.version_option("1a", prog_name="ametrine")
 @click.group()
 def cli():
     pass

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="ametrine",
-    version="1",
+    version="1a",
     author="Plurpio",
     author_email="148961679+plurpio@users.noreply.github.com",
     description="A CLI application to switch configuration files on the fly!",
