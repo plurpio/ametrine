@@ -1,6 +1,6 @@
 import os
 import logging
-from . import settings
+from ametrine import settings
 import yaml
 
 
@@ -32,3 +32,14 @@ def themePath(theme):
     if theme not in getThemes():
         return "invalid theme"
     return os.path.join(settings.setting("themepath"), theme)
+
+def baseIntergrity():
+    if settings.setting("basetheme") == "" or settings.setting("basetheme") == "invalid setting" or settings.setting("basetheme") in getThemes(): return []
+    """returns if the basetheme is applied correctly currently"""
+    notgood = [] # peak programming naming right here
+    for (root,dirs,files) in os.walk(themePath(settings.setting("basetheme")), topdown=True):
+        for i in files:
+            symlinkPath = os.path.join(root.replace(themePath(settings.setting("basetheme")), os.path.expanduser("~"))+"/"+i)
+            if os.path.exists(os.path.dirname(symlinkPath)) == False:
+                notgood.append(symlinkPath)
+    return notgood

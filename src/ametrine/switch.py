@@ -1,8 +1,8 @@
 import os
 import logging
-from . import themes
-from . import settings
-from . import data
+from ametrine import themes
+from ametrine import settings
+from ametrine import data
 
 def removeTheme(theme):
     for (root,dirs,files) in os.walk(themes.themePath(data.get("lastTheme")), topdown=True):
@@ -22,6 +22,12 @@ def changeTheme(theme):
         logging.error("invalid theme: "+theme)
         return "invalid theme"
 
+    if settings.setting("basetheme") != "":
+        for i in themes.baseIntergrity():
+            if os.path.exists(os.path.dirname(settings.setting("basetheme"))) == False: os.makedirs(os.path.dirname(settings.setting("basetheme")))
+            os.symlink(i, i.replace(themes.themePath(settings.setting("basetheme")), os.path.expanduser("~")))
+            logging.info("symlinked base "+i+" to "+i.replace(themes.themePath(settings.setting("basetheme")), os.path.expanduser("~")))
+
     # run theme-specific precmds
     if themes.themeConfig(theme, "precmds"):
         for i in themes.themeConfig(theme, "precmds"):
@@ -35,7 +41,7 @@ def changeTheme(theme):
             os.system(i)
 
     # removes last theme
-    if data.get("lastTheme"):
+    if data.get("lastTheme") and data.get("lastTheme") != settings.setting("basetheme"):
         removeTheme(data.get("lastTheme"))
 
 

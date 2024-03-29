@@ -12,6 +12,11 @@ themepath: "~/themes"
 # with symlinks. (only replaces symlinks if false)
 overwritefiles: False
 
+# The theme which is applied before applying the new
+# theme. Useful if you want to keep things like keybinds
+# consistent. Set to nothing to disable.
+basetheme: "base"
+
 # Commands run before changing the theme, these
 # are the default. Themes can also choose to 
 # define their own.
