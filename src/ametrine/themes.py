@@ -9,7 +9,7 @@ def getThemes():
     themes = []
     for i in os.listdir(settings.setting("themepath")):
         themePath = settings.setting("themepath")+"/"+i
-        if os.listdir(themePath) != []:
+        if os.path.isdir(themePath) == True and os.listdir(themePath) != []:
             try:
                 open(themePath+"/config.yaml")
                 themes.append(i)
