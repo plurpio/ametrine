@@ -22,7 +22,10 @@ jobs:
     - name: Copy testing themes
       run: |
         mkdir $HOME/themes
-        cp src/github/workflows/* $HOME/themes -r 
+        mkdir $HOME/.config
+        mkdir $HOME/.config/ametrine
+        cp src/github/workflows/themes/* $HOME/themes -r 
+        cp src/github/workflows/config.yaml $HOME/.config/ametrine/
 
     - name: Ametrine version
       run: ametrine --version
