@@ -12,7 +12,7 @@ if os.getenv("XDG_CONFIG_HOME") and os.getenv("XDG_CONFIG_HOME") != None:
     logging.info("using "+dataPath+" as data file")
 elif os.getenv("HOME") and os.getenv("HOME") != None:
     logging.warning("XDG_CONFIG_HOME is not set!")
-    dataPath = os.path.join(os.getenv("HOME"), "ametrine", "data.json")
+    dataPath = os.path.join(os.getenv("HOME"), ".config", "ametrine", "data.json")
     if os.path.exists(os.path.dirname(dataPath)) == False: os.makedirs(os.path.dirname(dataPath))
     logging.info("using "+dataPath+" as data file")
 else:
