@@ -22,11 +22,6 @@ def changeTheme(theme):
         logging.error("invalid theme: "+theme)
         return "invalid theme"
 
-    if settings.setting("basetheme") != "":
-        for i in themes.baseIntergrity():
-            if os.path.exists(os.path.dirname(settings.setting("basetheme"))) == False: os.makedirs(os.path.dirname(settings.setting("basetheme")))
-            os.symlink(i, i.replace(themes.themePath(settings.setting("basetheme")), os.path.expanduser("~")))
-            logging.info("symlinked base "+i+" to "+i.replace(themes.themePath(settings.setting("basetheme")), os.path.expanduser("~")))
 
     # run theme-specific precmds
     if themes.themeConfig(theme, "precmds"):
@@ -44,31 +39,42 @@ def changeTheme(theme):
     if data.get("lastTheme") and data.get("lastTheme") != settings.setting("basetheme"):
         removeTheme(data.get("lastTheme"))
 
-
+    # checks base theme integrity
+    if settings.setting("basetheme") != "":
+        for i in themes.baseIntergrity():
+            symlinkPath = i.replace(themes.themePath(settings.setting("basetheme")), os.path.expanduser("~"))
+            if os.path.exists(os.path.dirname(symlinkPath)) == False: os.makedirs(os.path.dirname(symlinkPath))
+            if symlinkPath == os.path.join(os.path.expanduser("~"), "config.yaml"): continue
+            if os.path.exists(symlinkPath) == True and os.path.islink(symlinkPath) == False:
+                logging.error("real file at location "+symlinkPath+" enable overwritefiles in config.yaml or delete file in that location.")
+                continue
+            elif os.path.islink(symlinkPath) == True: os.remove(symlinkPath)
+            os.symlink(i, symlinkPath)
+            logging.info("symlinked base "+i+" to "+symlinkPath)
 
     # symlinks theme files
-    for (root,dirs,files) in os.walk(themes.themePath(theme), topdown=True):
-        for i in files:
-            symlinkPath = os.path.join(root.replace(themes.themePath(theme), os.path.expanduser("~"))+"/"+i)
-            if symlinkPath == os.path.join(os.path.expanduser("~"), "config.yaml"):
-                logging.info("skipping config.yaml with path: "+root+"/"+i)
-                continue
-            if os.path.exists(os.path.dirname(symlinkPath)) == False:
-                os.makedirs(os.path.dirname(symlinkPath))
-                logging.info("creating dir: "+os.path.dirname(symlinkPath))
-            try:
-                if os.path.islink(symlinkPath) == True:
-                    os.remove(symlinkPath)
-                    logging.warning("overwriting symlink for path "+symlinkPath)
-                logging.info("symlinking "+os.path.join(root, i)+" to "+symlinkPath)
-                os.symlink(os.path.join(root, i), symlinkPath)
-            except:
-                if settings.setting("overwritefiles"):
-                    os.remove(symlinkPath)
+    if not settings.setting("basetheme") == theme:
+        for (root,dirs,files) in os.walk(themes.themePath(theme), topdown=True):
+            for i in files:
+                symlinkPath = os.path.join(root.replace(themes.themePath(theme), os.path.expanduser("~")), i)
+                if symlinkPath == os.path.join(os.path.expanduser("~"), "config.yaml"):
+                    logging.info("skipping config.yaml with path: "+root+"/"+i)
+                    continue
+                if os.path.exists(os.path.dirname(symlinkPath)) == False:
+                    os.makedirs(os.path.dirname(symlinkPath))
+                    logging.info("creating dir: "+os.path.dirname(symlinkPath))
+                try:
+                    if os.path.islink(symlinkPath) == True:
+                        os.remove(symlinkPath)
+                    logging.info("symlinking "+os.path.join(root, i)+" to "+symlinkPath)
                     os.symlink(os.path.join(root, i), symlinkPath)
-                    logging.warning("overwrited "+symlinkPath+" with symlink")
-                else:
-                    logging.error("real file at location "+symlinkPath+" enable overwritefiles in config.yaml or delete file in that location.")
+                except:
+                    if settings.setting("overwritefiles"):
+                        os.remove(symlinkPath)
+                        os.symlink(os.path.join(root, i), symlinkPath)
+                        logging.warning("overwrited "+symlinkPath+" with symlink")
+                    else:
+                        logging.error("real file at location "+symlinkPath+" enable overwritefiles in config.yaml or delete file in that location.")
 
 
     # runs theme-specific aftercmds

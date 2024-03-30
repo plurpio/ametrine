@@ -34,12 +34,12 @@ def themePath(theme):
     return os.path.join(settings.setting("themepath"), theme)
 
 def baseIntergrity():
-    if settings.setting("basetheme") == "" or settings.setting("basetheme") == "invalid setting" or settings.setting("basetheme") in getThemes(): return []
+    if settings.setting("basetheme") == "" or settings.setting("basetheme") == "invalid setting" or settings.setting("basetheme") not in getThemes(): return []
     """returns if the basetheme is applied correctly currently"""
     notgood = [] # peak programming naming right here
     for (root,dirs,files) in os.walk(themePath(settings.setting("basetheme")), topdown=True):
         for i in files:
             symlinkPath = os.path.join(root.replace(themePath(settings.setting("basetheme")), os.path.expanduser("~"))+"/"+i)
-            if os.path.exists(os.path.dirname(symlinkPath)) == False:
-                notgood.append(symlinkPath)
+            if os.path.exists(os.path.dirname(symlinkPath)) == False or os.path.realpath(symlinkPath) != os.path.join(themePath(settings.setting("basetheme")), root, i):
+                notgood.append(os.path.join(root, i))
     return notgood
