@@ -58,7 +58,9 @@ def config():
 @click.argument("theme")
 def change(theme):
     """change to a specific theme"""
-    switch.changeTheme(theme)
+    if theme in themes.getThemes():
+        switch.changeTheme(theme)
+    else: raise click.UsageError("invalid theme")
 
 @cli.command()
 @click.argument("theme", required=False)
